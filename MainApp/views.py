@@ -11,8 +11,8 @@ def index(request):    # there are two types of requests data from database -> g
 def topics(request):
     topics = Topic.objects.filter(owner=request.user)       #fetches all topics from database; list of objects
     context = {'topics':topics}    # uses a dictionary the key is the name of what would be used in a template, value is what will be used in the view
-    return render(request, 'MainApp/topics.html', context)
-
+    return render(request, 'MainApp/templates/mainapp/topics.html', context)
+#### double check 
 
 # from test code vew 
 #gest request
@@ -24,7 +24,7 @@ def topic(request, topic_id):
     entries = Entry.objects.filter(topic= topic).order_by('-date_added') #adds entry objects so it is filtered by the topic selected and ordered and sorted by descending order
     context = {'topic':topic, 'entries':entries}
 
-    return render(request, 'MainApp/topic.html', context)
+    return render(request, 'mainapp/topic.html', context)
 
 
 #post request uses redirect and TopicForm
@@ -43,7 +43,7 @@ def new_topic (request):
             return redirect('MainApp:topics') #automatically goes to the Topics page since a new topic has been added 
         
     context = {'form':form}
-    return render(request, 'MainApp/new_topic.html', context)
+    return render(request, 'mainapp/new_topic.html', context)
     
 @login_required
 def new_entry (request, topic_id):
@@ -61,7 +61,7 @@ def new_entry (request, topic_id):
             return redirect('MainApp:topic', topic_id=topic.id)
         
     context = {'form':form, 'topic':topic}
-    return render(request, 'MainApp/new_entry.html', context)
+    return render(request, 'mainapp/new_entry.html', context)
 
 @login_required
 def edit_entry (request, entryid):  # hast to be consistent to the path in urls.py
@@ -78,7 +78,7 @@ def edit_entry (request, entryid):  # hast to be consistent to the path in urls.
             form.save()
             return redirect('MainApp:topic', topic_id=topic.id)
     context = {'entry':entry, 'topic':topic, 'form':form}
-    return render(request, 'MainApp/edit_entry.html', context)
+    return render(request, 'mainapp/edit_entry.html', context)
 
         
         
