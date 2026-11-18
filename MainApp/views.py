@@ -7,7 +7,7 @@ from django.http import Http404 #produces an error if user tries to access a pag
 #get request
 # Create your views here.
 def index(request):    # there are two types of requests data from database -> get request or to database -> post request 
-    return render(request, 'templates/mainapp/index.html')   # view points to template MainApp/index/html 
+    return render(request, 'mainapp/index.html')   # view points to template MainApp/index/html 
 def topics(request):
     topics = Topic.objects.filter(owner=request.user)       #fetches all topics from database; list of objects
     context = {'topics':topics}    # uses a dictionary the key is the name of what would be used in a template, value is what will be used in the view
