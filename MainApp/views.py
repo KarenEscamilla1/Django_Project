@@ -11,7 +11,7 @@ def index(request):    # there are two types of requests data from database -> g
 def topics(request):
     topics = Topic.objects.filter(owner=request.user)       #fetches all topics from database; list of objects
     context = {'topics':topics}    # uses a dictionary the key is the name of what would be used in a template, value is what will be used in the view
-    return render(request, 'MainApp/templates/mainapp/topics.html', context)
+    return render(request, 'mainapp/topics.html', context)
 #### double check 
 
 # from test code vew 
